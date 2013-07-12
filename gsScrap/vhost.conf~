@@ -1,0 +1,8 @@
+WSGIScriptAlias /bb /home/gitcode/brainbought/djangocode/brainbought/wsgi.py
+
+<Directory /home/gitcode/brainbought/djangocode/brainbought>
+<Files wsgi.py>
+    Order allow,deny
+    Allow from all
+</Files>
+</Directory>
