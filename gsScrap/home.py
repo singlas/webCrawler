@@ -1,8 +1,12 @@
 from flask import Flask, render_template,request
 from subprocess import call
 import urllib2, StringIO, csv
+import logging
 
 app = Flask(__name__)
+file_handler = logging.FileHandler(filename='/tmp/webCrawler.log')
+file_handler.setLevel(logging.DEBUG)
+app.logger.addHandler(file_handler)
 
 @app.route("/")
 def home():
@@ -12,7 +16,7 @@ def home():
 def result():
     domain = request.args.get('domain')
     csvfile = '/var/www/public/%s.csv' % domain
-    command = "rm %s & scrapy crawl gaScrap -a domain='%s' -o %s 	 -t csv" % ( csvfile, domain, csvfile)
+    command = "rm -f %s & scrapy crawl gaScrap -a domain='%s' -o %s -t csv" % ( csvfile, domain, csvfile)
     call(command, shell=True)
 
     url = 'http://localhost/public/%s.csv' % domain
