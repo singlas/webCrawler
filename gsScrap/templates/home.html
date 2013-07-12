@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  </head>
+  <body>
+  <script>
+  function load_results() {
+  var url = '/result?domain=' + document.getElementsByName('domain')[0].value;
+  
+  $("#results").html("<div class='container'><img src='http://images.wikia.com/tibia/en/images/6/6c/Minimap_Loading.gif' /> Crawling ... </div>");
+ 
+  $('#results').load(url)
+  	
+  
+  }
+</script>
+
+
+<!-- Part 1: Wrap all page content here ;-->
+<div id="wrap">
+
+      <!-- Begin page content -->
+    <div class="container">
+        <div class="page-header">
+          <h1>Search</h1>
+        </div>
+        <div class="row">
+	  	    <div class="span8"> 
+			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... "  name="domain">     
+			         <span class="help-block">Do not add 'http://' in front, only give domain name.</span>   
+			       <!-- <label class="checkbox">
+			          <input type="checkbox" value="remember-me"> Remember me
+			        </label>-->
+			</div>
+        	<div class="span4">  <button class="btn btn-large btn-success" onclick="load_results()" >Run Crawler</button> </div>
+        </div>
+    
+	    <div id = 'results' ></div>
+    </div>      
+	
+	<div id="push"></div>
+    
+</div>
+
+
+    <script src="http://code.jquery.com/jquery.js"></script>    
+  </body>
+</html>
+

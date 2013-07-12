@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+<!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+    <div class="container">
+ 
+  <h3> Results for domain: {{domain}} </h3>
+  <button class="btn btn-large btn-block btn-warning" type="button" onclick="window.location.href='{{link}}'">Export to CSV</button> <!--<i class="icon-download"></i>-->
+
+  <table class="table table-hover table-condensed">
+  
+ 	<thead>
+				<tr>
+					<th width="5%">#</th>
+					<th width="45%">Link</th>
+					<th width="10%">Google Analytics</th>
+					<th width="10%">Google Analytics (Remarketing)</th>
+					<th width="10%">Google Analytics Steroids</th>
+					<th width="10%">Google Adwords</th>
+					<th width="10%">Google Tag Manager</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{ html | safe }}
+			</tbody>
+    </table> 
+
+        
+
+    </div>  
+</div>
+    <script src="http://code.jquery.com/jquery.js"></script>    
+  </body>
+</html>
+
