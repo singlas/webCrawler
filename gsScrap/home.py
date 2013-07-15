@@ -5,7 +5,7 @@ import logging
 
 app = Flask(__name__)
 file_handler = logging.FileHandler(filename='/tmp/webCrawler.log')
-file_handler.setLevel(logging.DEBUG)
+file_handler.setLevel(logging.ERROR)
 app.logger.addHandler(file_handler)
 
 @app.route("/")
@@ -19,7 +19,7 @@ def result():
     command = "rm -f %s & scrapy crawl gaScrap -a domain='%s' -o %s -t csv" % ( csvfile, domain, csvfile)
     call(command, shell=True)
 
-    url = 'http://localhost/public/%s.csv' % domain
+    url = 'http://192.241.198.85/public/%s.csv' % domain
     response = urllib2.urlopen(url).read()
     output = StringIO.StringIO(response)
     cr = csv.reader(output)

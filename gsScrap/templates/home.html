@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>Web Crawler</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -16,9 +16,16 @@
   $("#results").html("<div class='container'><img src='http://images.wikia.com/tibia/en/images/6/6c/Minimap_Loading.gif' /> Crawling ... </div>");
  
   $('#results').load(url)
-  	
+
   
   }
+
+  $(document).ready(function(){
+    $('#doamin_id').keypress(function(e){
+      if(e.keyCode==13)
+      $('#button_id').click();
+    });
+  });
 </script>
 
 
@@ -32,13 +39,13 @@
         </div>
         <div class="row">
 	  	    <div class="span8"> 
-			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... "  name="domain">     
+			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... " id="doamin_id"  name="domain">     
 			         <span class="help-block">Do not add 'http://' in front, only give domain name.</span>   
 			       <!-- <label class="checkbox">
 			          <input type="checkbox" value="remember-me"> Remember me
 			        </label>-->
 			</div>
-        	<div class="span4">  <button class="btn btn-large btn-success" onclick="load_results()" >Run Crawler</button> </div>
+        	<div class="span4">  <button class="btn btn-large btn-success" id="button_id" onclick="load_results()" >Run Crawler</button> </div>
         </div>
     
 	    <div id = 'results' ></div>
