@@ -9,15 +9,14 @@ from scrapy.item import Item
 import re
 
 class gsScrapSpider(CrawlSpider):
-    name = "gaScrap"    
-    rules = (
-        Rule(SgmlLinkExtractor(),'parse_item'), )   
+    name = "gaScrap"        
     
+    rules = ( Rule(SgmlLinkExtractor(),'parse_item', follow=True), ) 
 
     def __init__(self, domain=None, *a, **kw):
-        super(gsScrapSpider, self).__init__(*a, **kw)
+    	super(gsScrapSpider, self).__init__(*a, **kw)
         self.allowed_domains = ['%s' % domain ]
-        self.start_urls = ['http://%s' % domain]
+        self.start_urls = ['http://%s' % domain]        
 
     def parse_item(self, response):
         self.log('Hi, this is an item page! %s' % response.url)
