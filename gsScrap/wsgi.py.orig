@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+import sys
+sys.path.append('/home/gitcode/webCrawler/gsScrap')
+=======
 import sys, os
 import logging
+>>>>>>> 182643cb2984553c659c72cffdf5d68d2b62925c
 
 os.chdir("/home/gitcode/webCrawler/gsScrap")
 sys.path.append('/home/gitcode/webCrawler/gsScrap')

@@ -16,7 +16,11 @@ def home():
 def result():
     domain = request.args.get('domain')
     csvfile = '/var/www/public/%s.csv' % domain
+<<<<<<< HEAD
+    command = "rm %s & scrapy crawl gaScrap -a domain='%s' -o %s -t csv" % ( csvfile, domain, csvfile)
+=======
     command = "rm -f %s & scrapy crawl gaScrap -a domain='%s' -o %s -t csv" % ( csvfile, domain, csvfile)
+>>>>>>> 182643cb2984553c659c72cffdf5d68d2b62925c
     call(command, shell=True)
 
     url = 'http://localhost/public/%s.csv' % domain
