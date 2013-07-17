@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <!-- Bootstrap -->
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
   </head>
   <body>
 <!-- Part 1: Wrap all page content here -->
@@ -14,15 +14,19 @@
       <!-- Begin page content -->
     <div class="container">
  
-  <h3> Results for domain: {{domain}} </h3>
+   <div class="row-fluid">
+          <div class="span8 offset2"> 
+    <h5>The crawl is finished. Your results are listed below.</h5>
   <button class="btn btn-large btn-block btn-warning" type="button" onclick="window.location.href='{{link}}'">Export to CSV</button> <!--<i class="icon-download"></i>-->
-
-  <table class="table table-hover table-condensed">
+  </div>
+  </div>
+  <h4>We just crawled {{domain}}</h4>
+  <table class="table table-hover table-condensed table-bordered">
   
  	<thead>
 				<tr>
 					<th width="5%">#</th>
-					<th width="45%">Link</th>
+					<th width="45%">URL</th>
 					<th width="10%">Google Analytics</th>
 					<th width="10%">Google Analytics (Remarketing)</th>
 					<th width="10%">Google Analytics Steroids</th>

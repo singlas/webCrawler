@@ -19,7 +19,7 @@ def result():
     command = "rm -f %s & scrapy crawl gaScrap -a domain='%s' -o %s -t csv" % ( csvfile, domain, csvfile)
     call(command, shell=True)
 
-    url = 'http://192.241.198.85/public/%s.csv' % domain
+    url = 'http://www.gachecker.com/public/%s.csv' % domain
     response = urllib2.urlopen(url).read()
     output = StringIO.StringIO(response)
     cr = csv.reader(output)
@@ -37,7 +37,7 @@ def result():
     for (i,row) in enumerate(cr):
     	row = map( format , row )
     	if (i!=0):
-            html += "<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % ( i, row[1], row[2],row[3],row[4],row[5],row[6] )    
+            html += "<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % ( i, row[0], row[2],row[3],row[4],row[5],row[6] )    
     return render_template('crawler.html', html=html, domain=domain, link=url)
 
 if __name__ == "__main__":

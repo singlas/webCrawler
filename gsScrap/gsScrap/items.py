@@ -7,7 +7,7 @@ from scrapy.item import Item, Field
 
 class gsScrapItem(Item):
     Title = Field()
-    Link = Field()
+    URL = Field()
     GA = Field()
     GA_Remarketing = Field()
     Google_Addworks = Field()

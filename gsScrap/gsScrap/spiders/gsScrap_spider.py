@@ -22,7 +22,7 @@ class gsScrapSpider(CrawlSpider):
         self.log('Hi, this is an item page! %s' % response.url)
         hxs = HtmlXPathSelector(response)
         item = gsScrapItem()
-        item['Link'] = response.url
+        item['URL'] = response.url
         item['Title'] = hxs.select('//title/text()').extract().pop().strip()   
         
         #_gaq.push(['_trackPageview']);

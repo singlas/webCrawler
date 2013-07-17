@@ -16,8 +16,8 @@ FEED_EXPORTERS = {
 }
 
 EXPORT_FIELDS = [
+    'URL',
     'Title',
-    'Link',
     'GA',
     'GA_Remarketing',
     'GA_Steroids',
