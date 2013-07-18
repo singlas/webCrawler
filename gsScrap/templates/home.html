@@ -3,14 +3,15 @@
   <head>
     <title>Check Your Site for Google Analytics | GAChecker.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='http://fonts.googleapis.com/css?family=Sonsie+One|Droid+Sans+Mono|Droid+Serif|Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
-  <!-- Bootstrap -->
-    <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Sonsie+One|Droid+Sans+Mono|Droid+Serif|Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <!-- <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">-->
     <!-- <link href="http://www.gachecker.com/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
-    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
-    <link href="{{url_for('static', filename='progressbar.css')}}" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    
+    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='progressbar.css')}}" rel="stylesheet">        
      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
      
      <!--Google Analytics on Steroids-->
@@ -49,7 +50,7 @@
         height: 100%;
         color: #fff;
         text-align: right;
-        line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+        line-height: 22px; 
         width: 0;
         background-color: #0099ff;
     }
@@ -65,10 +66,12 @@
   }
 
   function load_results() {
-  
-    var url = 'http://192.241.212.219/result?domain=' + document.getElementsByName('domain')[0].value;    
+    //192.241.212.219
+    var url = 'result?domain=' + document.getElementsByName('domain')[0].value ;    
     url += '&follow=' + ( document.getElementsByName('follow')[0].checked ? '0' : '1' );
     url += '&deny_url=' + ( document.getElementsByName('deny_url')[0].checked ? '1' : '0' );
+    url += '&subdomains=' + ( document.getElementsByName('subdomains')[0].checked ? '1' : '0' );
+    url += '&itemcount={{itemcount}}' 
 
     var r = 0;
     var inter = null;
@@ -86,18 +89,14 @@
               }
           }
 
-    inter = setInterval(runp, 1000);
-    //$("#results").html("<div class='container'><img src='http://images.wikia.com/tibia/en/images/6/6c/Minimap_Loading.gif' /> Crawling ... </div>");
-    $("#results_top").html("<div id='progressBar' class='tiny-green' ><div></div></div>"); 
-    
+    inter = setInterval(runp, 1000);    
+    $("#results_top").html("<div id='progressBar' class='tiny-green' ><div></div></div>");     
     $('#results').load(url, function() {            
       $("#results_top2").html("<center><span style='color:#595959'>The crawl is finished. Your results are listed below.</span></center>");
       clearInterval(inter);      
       progress(100, $('#progressBar'));      
     });
   }
-
-
 
   $(document).ready(function(){
     $('#doamin_id').keypress(function(e){
@@ -132,6 +131,9 @@
               <label class="checkbox inline">              
                 <input type="checkbox" name="deny_url" > Skip URLs With Parameters
 			        </label>
+              <label class="checkbox inline">              
+                <input type="checkbox" name="subdomains" > Allow Subdomains
+              </label>
 			    </div>
         	<div class="span2"> <span class="help-block"> &nbsp; </span>  <button class="btn btn-large btn-block btn-success" id="button_id" onclick="load_results()" >Run Crawler</button> </div>
         </div>

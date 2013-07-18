@@ -14,15 +14,17 @@ class gsScrapSpider(CrawlSpider):
     #rules = ( Rule(SgmlLinkExtractor(),'parse_item', follow=follow), )   
 
     
-    def __init__(self, domain=None, follow=1,deny_url='0',*a, **kw):   	
-    	self.log('Hi, value of follow! %s' % follow)
-    	self.log('Hi, value of domain! %s' % domain)
+    def __init__(self, domain=None, follow='1',deny_url='0',subdomains='0',*a, **kw):   	
+    	self.log('Hi, value of domain,follow, deny_url, subdomains are : ( %s,%s,%s,%s ) !' % (domain,follow,deny_url,subdomains)     )	
         kw['allowed_domains'] = ['%s' % domain ]
         kw['start_urls'] = ['http://%s' % domain]
+        deny = ['^\['];
+
         if( bool(deny_url) ):
-        	deny = ('.*\?.*',)
-        else:
-        	deny = ('^\[',)
+        	deny.append('.*\?.*')      
+
+        if( not bool(int(subdomains)) ):
+        	deny.append( '.*\.%s.*' % domain )
         
         kw['rules'] = ( Rule(SgmlLinkExtractor(deny=deny),'parse_item', follow=bool(int(follow))), )   
         super(gsScrapSpider, self).__init__(*a, **kw)
@@ -43,7 +45,7 @@ class gsScrapSpider(CrawlSpider):
         #gs.js
         gajs1 = hxs.select('//script/text()').re(r'ga\.js')  
         
-        item['GA'] = len(gajs1) and len(gaq1) and len(gaq2)
+        item['GA'] = int(bool(len(gajs1) and len(gaq1) and len(gaq2)))
 
 
         #analytics.js
@@ -52,16 +54,16 @@ class gsScrapSpider(CrawlSpider):
         ua2 = hxs.select('//script/text()').re(r"ga\( *\[ *\'send\' *\, *\'pageview\'*\] *\)") 
         #ga('create', 'UA-XXXX-Y'); 
         ua3 = hxs.select('//script/text()').re(r"ga\( *\[ *\'create\' *\, *\'UA\-.*\-.*\'*\] *\)")
-        item['Universal_Analytics'] = len(ua1) and len(ua2) and len(ua3)
+        item['Universal_Analytics'] = int(bool(len(ua1) and len(ua2) and len(ua3)))
 
         #dc.js
         dcjs1 = hxs.select('//script/text()').re(r'dc\.js')  
-        item['GA_Remarketing'] = len(dcjs1) and len(gaq1) and len(gaq2)
+        item['GA_Remarketing'] = int(bool(len(dcjs1) and len(gaq1) and len(gaq2)))
 
         #var google_conversion_id = XXXXXXXXX;
         gaw1 = hxs.select('//script/text()').re(r"var * google_conversion_id *\= * \d+") 
         gaw2 = hxs.re(r'googleadservices\.com\/pagead\/conversion\.js' )
-        item['Google_AdWords']= len(gaw1) and len(gaw2)
+        item['Google_AdWords']= int(bool(len(gaw1) and len(gaw2)))
 
         #_gas.push(['_trackPageview']);
         gas1 = hxs.select('//script/text()').re(r"_gas\.push\( *\[ *\'_trackPageview\' *\] *\)")     
@@ -69,12 +71,12 @@ class gsScrapSpider(CrawlSpider):
         gas2 = hxs.select('//script/text()').re(r"_gas\.push\( *\[ *\'_setAccount\' *\, *'UA\-.*\-.*\'*\] *\)")
         #gas-1.10.1.min.js
         gasjs1 = hxs.select('//script/text()').re(r'gas.*\.js')  
-        item['GA_Steroids'] = len(gasjs1) and len(gas1) and len(gas2)
+        item['GA_Steroids'] = int(bool(len(gasjs1) and len(gas1) and len(gas2)))
 
         #www.googletagmanager.com/ns.html and
         gtm1 = hxs.re(r'googletagmanager\.com\/ns\.html') 
         #www.googletagmanager.com/gtm.js
         gtm2 = hxs.re(r'googletagmanager\.com\/gtm\.js') 
-        item['Google_Tag_Manager'] = len(gtm1) and len(gtm2)
+        item['Google_Tag_Manager'] = int(bool(len(gtm1) and len(gtm2)))
         return item
 
