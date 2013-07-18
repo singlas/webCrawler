@@ -9,40 +9,45 @@
   </head>
   <body>
 <!-- Part 1: Wrap all page content here -->
-    <div id="wrap">
+  <div id="wrap">
 
       <!-- Begin page content -->
     <div class="container">
  
-   <div class="row-fluid">
-          <div class="span8 offset2"> 
-    <h5>The crawl is finished. Your results are listed below.</h5>
-  <button class="btn btn-large btn-block btn-warning" type="button" onclick="window.location.href='{{link}}'">Export to CSV</button> <!--<i class="icon-download"></i>-->
-  </div>
-  </div>
-  <h4>We just crawled {{domain}}</h4>
-  <table class="table table-hover table-condensed table-bordered">
-  
- 	<thead>
-				<tr>
-					<th width="5%">#</th>
-					<th width="45%">URL</th>
-					<th width="10%">Google Analytics</th>
-					<th width="10%">Google Analytics (Remarketing)</th>
-					<th width="10%">Google Analytics Steroids</th>
-					<th width="10%">Google Adwords</th>
-					<th width="10%">Google Tag Manager</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{ html | safe }}
-			</tbody>
-    </table> 
-
+      <div class="row-fluid">
+        <div class="span12">           
+           <!--<i class="icon-download"></i>-->
+          <br><hr style="border:1px solid #dddddd">
+          <div class="alert alert-{{type}}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message|safe}}
+          </div>        
+          <div style="display:{{display}}"><button class="btn btn-block btn-warning" type="button" onclick="window.location.href='{{link}}'">Export to CSV</button><br></div>
+          <div style="height:450px;overflow:auto" >
+          <table class="table table-hover table-condensed table-bordered" style="display:{{display}}">
+           	<thead>
+      				<tr>
+      					<th width="5%">#</th>
+      					<th width="45%">URL</th>
+      					<th width="10%">Google Analytics</th>
+      					<th width="10%">Universal Analytics</th>
+                <th width="10%">Google Analytics Remarketing</th>
+      					<th width="10%">Google Analytics on Steroids</th>
+      					<th width="10%">Google Adwords Remarketing</th>
+      					<th width="10%">Google Tag Manager</th>
+      				</tr>
+      			</thead>
+          	<tbody>
+          		{{ html | safe }}
+          	</tbody>
+          </table>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>    
         
 
-    </div>  
-</div>
     <script src="http://code.jquery.com/jquery.js"></script>    
   </body>
 </html>

@@ -19,9 +19,10 @@ EXPORT_FIELDS = [
     'URL',
     'Title',
     'GA',
+    'Universal_Analytics',
     'GA_Remarketing',
     'GA_Steroids',
-    'Google_Addworks',     
+    'Google_AdWords',     
     'Google_Tag_Manager',
 ]
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

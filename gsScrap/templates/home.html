@@ -3,14 +3,16 @@
   <head>
     <title>Check Your Site for Google Analytics | GAChecker.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='http://fonts.googleapis.com/css?family=Sonsie+One|Droid+Sans+Mono|Droid+Serif|Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
-	<!-- Bootstrap -->
+  <link href='http://fonts.googleapis.com/css?family=Sonsie+One|Droid+Sans+Mono|Droid+Serif|Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap -->
     <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
     <!-- <link href="http://www.gachecker.com/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
     <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='progressbar.css')}}" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+     
      <!--Google Analytics on Steroids-->
      <script type="text/javascript">
     var _gas = _gas || [];
@@ -35,18 +37,67 @@
     })();
     </script> 
     <!--end GAS -->
+    <style type="text/css">
+      #progressBar {
+    width: 100%;
+    height: 22px;
+    border: 1px solid #111;
+    background-color: #292929;
+    }
+
+    #progressBar div {
+        height: 100%;
+        color: #fff;
+        text-align: right;
+        line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+        width: 0;
+        background-color: #0099ff;
+    }
+  
+    </style>   
   </head>
   <body>
   <script>
-  function load_results() {
-  var url = 'http://www.gachecker.com/check/result?domain=' + document.getElementsByName('domain')[0].value;
-  
-  $("#results").html("<div class='container'><img src='http://images.wikia.com/tibia/en/images/6/6c/Minimap_Loading.gif' /> Crawling ... </div>");
- 
-  $('#results').load(url)
 
-  
+  function progress(percent, $element) {
+  var progressBarWidth = percent * $element.width() / 100;
+  $element.find('div').animate({ width: progressBarWidth }, 500).html(percent + "%&nbsp;");
   }
+
+  function load_results() {
+  
+    var url = 'http://192.241.212.219/result?domain=' + document.getElementsByName('domain')[0].value;    
+    url += '&follow=' + ( document.getElementsByName('follow')[0].checked ? '0' : '1' );
+    url += '&deny_url=' + ( document.getElementsByName('deny_url')[0].checked ? '1' : '0' );
+
+    var r = 0;
+    var inter = null;
+    
+    var ran = Math.floor(12 + (Math.random()*8));    
+        function runp() {
+              r++;
+              progress(4*r, $('#progressBar'));            
+              var num = r*4 - 2 + Math.floor( Math.random()*4 );
+              $("#results_top2").html("<b>Crawling .....  " + num + "% </b>");
+              
+              if(r == ran ){
+                  r =  Math.floor( r - Math.random()*r );
+                  ran = ran + Math.floor( Math.random()*((25-ran)) );                  
+              }
+          }
+
+    inter = setInterval(runp, 1000);
+    //$("#results").html("<div class='container'><img src='http://images.wikia.com/tibia/en/images/6/6c/Minimap_Loading.gif' /> Crawling ... </div>");
+    $("#results_top").html("<div id='progressBar' class='tiny-green' ><div></div></div>"); 
+    
+    $('#results').load(url, function() {            
+      $("#results_top2").html("<center><span style='color:#595959'>The crawl is finished. Your results are listed below.</span></center>");
+      clearInterval(inter);      
+      progress(100, $('#progressBar'));      
+    });
+  }
+
+
 
   $(document).ready(function(){
     $('#doamin_id').keypress(function(e){
@@ -54,8 +105,7 @@
       $('#button_id').click();
     });
   });
-</script>
-
+</script> 
 
 <!-- Part 1: Wrap all page content here ;-->
 <div id="wrap">
@@ -72,17 +122,28 @@
         	<p class="lead subhead">This is a test paragraph, seeing what a subhead will look like.</p>
         </div> -->
         <div class="row-fluid">
+
 	  	    <div class="span6 offset2"> 
-			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... " id="doamin_id"  name="domain">     
-			         <span class="help-block">Do not add 'http://', only the domain name.</span>   
-			       <!-- <label class="checkbox">
-			          <input type="checkbox" value="remember-me"> Remember me
-			        </label>-->
-			</div>
-        	<div class="span4">  <button class="btn btn-large btn-success" id="button_id" onclick="load_results()" >Run Crawler</button> </div>
+              <span class="help-block">Do not add 'http://', only the domain name.</span>   
+			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... " id="doamin_id"  name="domain">			         
+			        <label class="checkbox inline">
+			          <input type="checkbox" name="follow" > Sitemap
+              </label>
+              <label class="checkbox inline">              
+                <input type="checkbox" name="deny_url" > Skip URLs With Parameters
+			        </label>
+			    </div>
+        	<div class="span2"> <span class="help-block"> &nbsp; </span>  <button class="btn btn-large btn-block btn-success" id="button_id" onclick="load_results()" >Run Crawler</button> </div>
         </div>
-    
-	    <div id = 'results' ></div>
+        <div class="row-fluid">
+          <div class="span8 offset2">
+             <div id = 'results_top' ></div> 
+              <div id = 'results_top2' ></div>                     
+          </div>          
+        </div>
+        <div id = 'results' ></div>
+
+      
     </div>      
 	
 	<div id="push"></div>
@@ -90,7 +151,7 @@
 </div>
 
 
-    <script src="http://code.jquery.com/jquery.js"></script>    
+    <script src="http://code.jquery.com/jquery.js"></script>     
   </body>
 </html>
 
