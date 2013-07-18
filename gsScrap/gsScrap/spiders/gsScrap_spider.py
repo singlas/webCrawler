@@ -24,7 +24,7 @@ class gsScrapSpider(CrawlSpider):
         	deny.append('.*\?.*')      
 
         if( not bool(int(subdomains)) ):
-        	deny.append( '.*\.%s.*' % domain )
+        	deny.append( '[^w]+\.%s.*' % domain )
         
         kw['rules'] = ( Rule(SgmlLinkExtractor(deny=deny),'parse_item', follow=bool(int(follow))), )   
         super(gsScrapSpider, self).__init__(*a, **kw)
