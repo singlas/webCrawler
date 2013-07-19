@@ -20,7 +20,7 @@ class gsScrapSpider(CrawlSpider):
         kw['start_urls'] = ['http://%s' % domain]
         deny = ['^\['];
 
-        if( bool(deny_url) ):
+        if( bool(int(deny_url)) ):
         	deny.append('.*\?.*')      
 
         if( not bool(int(subdomains)) ):

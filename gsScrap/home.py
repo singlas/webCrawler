@@ -22,7 +22,7 @@ def result():
     domain = request.args.get('domain')
     match = re.match( r'^(?=.{4,255}$)([a-zA-Z0-9][a-zA-Z0-9-]{,61}[a-zA-Z0-9]\.)+[a-zA-Z0-9]{2,5}$', domain )
     host = "192.241.212.219"
-    #host="localhost"
+    host="localhost"
     msg_type = 'success'
     msg = "We just crawled <b>%s</b>" % domain
     display = 'block'
@@ -79,7 +79,7 @@ def result():
     for (i,row) in enumerate(rowdata):
     	row = map( format , row )
     	if (i!=0):
-            html += "<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % ( i, row[0], row[2],row[3],row[4],row[5],row[6],row[7] )    
+            html += "<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % ( i, row[0], row[2],row[3],row[4],row[6],row[7] )    
     return render_template('crawler.html', html=html, domain=domain, type=msg_type, message=msg, display=display, link=url)
 
 if __name__ == "__main__":

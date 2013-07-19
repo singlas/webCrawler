@@ -7,12 +7,13 @@
     <!-- Bootstrap -->
     <!-- <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">-->
     <!-- <link href="http://www.gachecker.com/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+   <script src="http://code.jquery.com/jquery.min.js"></script>
+<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
     
-    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">
-    <link href="{{url_for('static', filename='progressbar.css')}}" rel="stylesheet">        
-     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">       
+     
      
      <!--Google Analytics on Steroids-->
      <script type="text/javascript">
@@ -37,9 +38,9 @@
     s.parentNode.insertBefore(ga, s);
     })();
     </script> 
-    <!--end GAS -->
+    <!--end GAS --
     <style type="text/css">
-      #progressBar {
+    #progressBar {
     width: 100%;
     height: 22px;
     border: 1px solid #111;
@@ -55,7 +56,7 @@
         background-color: #0099ff;
     }
   
-    </style>   
+    </style>   -->
   </head>
   <body>
   <script>
@@ -68,11 +69,12 @@
   function load_results() {
     //192.241.212.219
     var url = 'result?domain=' + document.getElementsByName('domain')[0].value ;    
-    url += '&follow=' + ( document.getElementsByName('follow')[0].checked ? '0' : '1' );
+    //url += '&follow=' + ( document.getElementsByName('follow').value ) ; //[0].checked ? '0' : '1' );
+    url += '&follow=' + ( $('#follow').hasClass('active') ? '0' : '1' );
     url += '&deny_url=' + ( document.getElementsByName('deny_url')[0].checked ? '1' : '0' );
     url += '&subdomains=' + ( document.getElementsByName('subdomains')[0].checked ? '1' : '0' );
     url += '&itemcount={{itemcount}}' 
-
+    
     var r = 0;
     var inter = null;
     
@@ -81,7 +83,7 @@
               r++;
               progress(4*r, $('#progressBar'));            
               var num = r*4 - 2 + Math.floor( Math.random()*4 );
-              $("#results_top2").html("<b>Crawling .....  " + num + "% </b>");
+              $("#results_top2").html("<b>Crawling .....  </b>");
               
               if(r == ran ){
                   r =  Math.floor( r - Math.random()*r );
@@ -90,7 +92,7 @@
           }
 
     inter = setInterval(runp, 1000);    
-    $("#results_top").html("<div id='progressBar' class='tiny-green' ><div></div></div>");     
+    $("#results_top").html("<br><div id='progressBar' class='progress progress-striped active' ><div class='bar'></div></div>");     
     $('#results').load(url, function() {            
       $("#results_top2").html("<center><span style='color:#595959'>The crawl is finished. Your results are listed below.</span></center>");
       clearInterval(inter);      
@@ -102,7 +104,8 @@
     $('#doamin_id').keypress(function(e){
       if(e.keyCode==13)
       $('#button_id').click();
-    });
+    });  	
+  	
   });
 </script> 
 
@@ -125,9 +128,14 @@
 	  	    <div class="span6 offset2"> 
               <span class="help-block">Do not add 'http://', only the domain name.</span>   
 			        <input type="text" class="input-block-level" placeholder="Enter Domain Name ... " id="doamin_id"  name="domain">			         
-			        <label class="checkbox inline">
-			          <input type="checkbox" name="follow" > Sitemap
-              </label>
+			  
+			  <!--<div class="btn-group" id="follow" data-toggle="buttons-checkbox">
+				  <button type="button" class="btn btn-primary">Sitemap Mode</button>
+				  <button type="button" class="btn btn-primary">Skip URLs With Parameters</button>
+				  <button type="button" class="btn btn-primary">Allow Subdomains</button>
+			  </div>-->
+
+			  <button type="button"  class="btn btn-primary" id="follow" data-toggle="button">Sitemap Mode</button> &nbsp;	&nbsp; &nbsp;  
               <label class="checkbox inline">              
                 <input type="checkbox" name="deny_url" > Skip URLs With Parameters
 			        </label>
@@ -143,17 +151,14 @@
               <div id = 'results_top2' ></div>                     
           </div>          
         </div>
-        <div id = 'results' ></div>
-
-      
+        <div id = 'results' ></div>      
     </div>      
 	
 	<div id="push"></div>
     
 </div>
+  <!--  <script src="http://code.jquery.com/jquery.js"></script>-->
 
-
-    <script src="http://code.jquery.com/jquery.js"></script>     
   </body>
 </html>
 
