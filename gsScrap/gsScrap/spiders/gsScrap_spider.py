@@ -7,6 +7,7 @@ from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from gsScrap.items import gsScrapItem
 from scrapy.item import Item
 import re
+from urlparse import urlparse
 
 class gsScrapSpider(CrawlSpider):
     name = "gaScrap"        
@@ -15,9 +16,12 @@ class gsScrapSpider(CrawlSpider):
 
     
     def __init__(self, domain=None, follow='1',deny_url='0',subdomains='0',*a, **kw):   	
-    	self.log('Hi, value of domain,follow, deny_url, subdomains are : ( %s,%s,%s,%s ) !' % (domain,follow,deny_url,subdomains)     )	
-        kw['allowed_domains'] = ['%s' % domain ]
-        kw['start_urls'] = ['http://%s' % domain]
+    	start_url  = domain
+        domain = urlparse(domain).netloc
+        self.log('Hi, value of starturl,domain,follow, deny_url, subdomains are : ( %s,%s,%s,%s,%s ) !' % (start_url,domain,follow,deny_url,subdomains)     ) 
+
+        kw['allowed_domains'] = [domain]
+        kw['start_urls'] = [start_url]
         deny = ['^\['];
 
         if( bool(int(deny_url)) ):

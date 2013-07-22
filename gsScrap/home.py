@@ -6,6 +6,7 @@ from time import sleep
 import re   
 from urllib2 import urlopen
 from operator import itemgetter
+from urlparse import urlparse
 
 
 app = Flask(__name__)
@@ -20,39 +21,37 @@ def home():
 @app.route('/result', methods=['GET','POST'])
 def result():
     domain = request.args.get('domain')
-    match = re.match( r'^(?=.{4,255}$)([a-zA-Z0-9][a-zA-Z0-9-]{,61}[a-zA-Z0-9]\.)+[a-zA-Z0-9]{2,5}$', domain )
-    host = "192.241.212.219"
-    host="localhost"
-    msg_type = 'success'
-    msg = "We just crawled <b>%s</b>" % domain
-    display = 'block'
-    
-    if( match == None ):
-        msg_type = 'error'
-        msg = "<b>Domain name not valid!</b> Please check the domain and try again"
-        display='none'
-        return render_template('crawler.html', html="", domain=domain, type=msg_type, message=msg, display=display, link="#")
-    else:
-        try:
-            urlopen( 'http://' + domain)
-        except urllib2.HTTPError, e:
-            msg_type = 'error'
-            msg = "<b>HTTP %d error on domain!</b> Please check the domain and try again" % e.code 
-            display='none'
-            return render_template('crawler.html', html="", domain=domain, type=msg_type, message=msg, display=display, link="#")
- 
     follow = request.args.get('follow')
     deny_url = request.args.get('deny_url')
     subdomains = request.args.get('subdomains')
     itemcount = request.args.get('itemcount')
-    csvfile = '/var/www/public/%s.csv' % domain
+    host = "192.241.212.219"
+    #host="localhost"
+    msg_type = 'success'
+    msg = "We just crawled <b>%s</b>" % domain
+    display = 'block'    
+    
+    o=urlparse(domain)
+    if(o.netloc==''):
+        domain="http://" + domain
+
+    try:
+        domain = urlopen(domain).geturl()
+    except urllib2.HTTPError, e:
+        msg_type = 'error'
+        msg = "<b>HTTP %d error on domain!</b> Please check the domain and try again" % e.code 
+        display='none'
+        return render_template('crawler.html', html="", domain=domain, type=msg_type, message=msg, display=display, link="#")
+
+    o=urlparse(domain)
+    csvfile = '/var/www/public/%s.csv' % o.netloc
 
     command = "rm -f %s & scrapy crawl gaScrap -a domain='%s' -a follow=%s -a deny_url=%s -a subdomains=%s -o %s -t csv --set CLOSESPIDER_ITEMCOUNT=%s" \
                  % ( csvfile, domain, follow, deny_url,subdomains, csvfile, itemcount ) 
     app.logger.info(command)   
-    call(command, shell=True) #
+    call(command, shell=True)
     
-    url = 'http://%s/public/%s.csv' % ( host, domain )
+    url = 'http://%s/public/%s.csv' % ( host, o.netloc )
     response = urllib2.urlopen(url).read()
     output = StringIO.StringIO(response)
     cr = csv.reader(output)
