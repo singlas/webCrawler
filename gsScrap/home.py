@@ -25,7 +25,7 @@ def result():
     deny_url = request.args.get('deny_url')
     subdomains = request.args.get('subdomains')
     itemcount = request.args.get('itemcount')
-    host = "192.241.212.219"
+    host ="gachecker.com" # "192.241.212.219"
     #host="localhost"
     msg_type = 'success'
     msg = "We just crawled <b>%s</b>" % domain

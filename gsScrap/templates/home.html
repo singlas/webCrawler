@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Check Your Site for Google Analytics | GAChecker.com</title>
+    <title>Check Your Site for Google Analytics Code | GAChecker.com</title>
+    <meta name="description" content="Check your entire site for Google Analytics code, for free. Don't wait until report time to find mistakes."> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Sonsie+One|Droid+Sans+Mono|Droid+Serif|Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Offside|Monda:400,700' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
-    <!-- <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">-->
-    <!-- <link href="http://www.gachecker.com/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+     <link href="http://www.gachecker.com/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery.min.js"></script>
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap.js"></script>
     <link href="http://www.gachecker.com/css/custom.css" rel="stylesheet">       
-    
-    <!--Google Analytics on Steroids-->
+  <link href='http://www.gachecker.com/css/bootstrap-switch.css' rel="stylesheet">
+  <script src="http://www.gachecker.com/css/bootstrap-switch.js"></script>    
+<!--Google Analytics on Steroids-->
      <script type="text/javascript">
     var _gas = _gas || [];
     _gas.push(['_setAccount', 'UA-42482432-1']); 
     _gas.push(['_setDomainName', '.gachecker.com']); 
     _gas.push(['_trackPageview']);
-    _gas.push(['_gasTrackForms']);
     _gas.push(['_gasTrackOutboundLinks']);
     _gas.push(['_gasTrackMaxScroll']);
     _gas.push(['_gasTrackDownloads']);
-    _gas.push(['_gasTrackYoutube', {force: true}]);
-    _gas.push(['_gasTrackVimeo', {force: true}]);
     _gas.push(['_gasTrackMailto']);
+    _gas.push(['_gasHTMLMarkup']);
 
     (function() {
     var ga = document.createElement('script');
@@ -38,8 +35,143 @@
     </script> 
     <!--end GAS -->
     
+    <!-- Start Webengage Survey -->
+    <script id="_webengage_script_tag" type="text/javascript">
+      var _weq = _weq || {};
+      _weq['webengage.licenseCode'] = 'aa131a58';
+      _weq['webengage.widgetVersion'] = "4.0";
+      
+      (function(d){
+        var _we = d.createElement('script');
+        _we.type = 'text/javascript';
+        _we.async = true;
+        _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+        var _sNode = d.getElementById('_webengage_script_tag');
+        _sNode.parentNode.insertBefore(_we, _sNode);
+      })(document);
+    </script>
+    <!-- end Webengage survey -->
+    
+    <!-- WMT Verification -->
+    <meta name="google-site-verification" content="2Mjztc0fSu53zqbHQT6ahejjeYzBp78Zag2Yov8w2Wk" />
+    <meta name="msvalidate.01" content="92BCDA81F36950FCA5BBD85D8ED0D654" />
+
+    <!-- Twitter Widget -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </head>
-  <body>
+
+
+<body>
+<!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Part 1: Wrap all page content here ;-->
+<div id="wrap">
+
+      <!-- Begin page content -->
+    <div class="container-fluid">
+    <div class="navbar navbar-fixed-top">
+    <div class="row-fluid socialRow">
+          <div class="span8 offset2">
+            <div
+            x-ga-event-category="social"
+            x-ga-event-action="tweet"
+            >         
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gachecker.com" data-text="You can check your entire site for missing Google Analtyics code here, for free!" data-via="jshklt"  >Tweet</a>
+            </div>
+            
+            <!-- Place this tag where you want the +1 button to render. -->
+            <div
+            x-ga-event-category="social"
+            x-ga-event-action="plusOne">
+            <!-- Place this tag where you want the +1 button to render. -->
+            <div class="g-plusone" data-size="medium" data-href="http://www.gachecker.com"></div>
+            </div>
+            <!-- Place this tag after the last +1 button tag. -->
+            <script type="text/javascript">
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>
+            <div class="fb-like" data-href="http://www.gachecker.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
+          </div>
+        </div>
+      </div>
+        
+        <div class="row-fluid">
+
+        <div class="page-header span8 offset2">
+          <h1>GA Checker</h1>
+          <p class="lead subhead">Crawl your site for missing Google Analytics code now, save yourself headaches later.</p>
+        </div>
+        </div>
+        <!-- <div class="span8 offset2">
+        	<p class="lead subhead">This is a test paragraph, seeing what a subhead will look like.</p>
+        </div> -->
+        <div class="row-fluid">
+	  	    <div class="span6 offset2"> 
+			  <input type="text" class="input-block-level" placeholder="Domain Name Goes Here. . ." id="doamin_id"  name="domain">			         
+			  
+			<!--  <button type="button"  class="btn btn-primary" id="follow" data-toggle="button">Sitemap Mode</button> &nbsp;	&nbsp; &nbsp;  
+			  -->
+<!--	
+              <label class="checkbox inline">              
+                <input type="checkbox" name="follow" > Sitemap Mode
+			  label>
+	<label class="checkbox inline">              
+                <input type="checkbox" name="deny_url" > Skip URLs With Parameters
+			  </label>
+              <label class="checkbox inline">              
+                <input type="checkbox" name="subdomains" > Allow Subdomains
+              </label>-->
+			</div>
+        	<div class="span2" 
+            x-ga-event-category="crawler"
+            x-ga-event-action="click"
+            x-ga-event-label="run crawl"
+            x-ga-event-value="1"> 
+        		<button class="btn btn-large btn-block btn-success" id="button_id" onclick="load_results()">Check My Site</button> 
+        	</div>
+        </div>
+    <div class="row-fluid">
+    <div class="span6 offset2">
+    <div class="crawlToggle">Mode:              
+    <div class="switch switch-small" data-off-label="Sitemap" data-on-label="Normal" data-on="success" data-off="warning" >
+    <input type="checkbox" name="follow" checked /></div>
+    </div>
+    <div class="crawlToggle">URL Parameters:
+    <div class="switch switch-small" data-off-label="Allow" data-on-label="Skip" data-on="success" data-off="warning" >
+    <input type="checkbox" name="deny_url" checked /></div>
+    </div>
+    <div class="crawlToggle">Include Subdomains:
+    <div class="switch switch-small" data-on-label="Allow" data-off-label="Skip" data-on="success" data-off="warning" >
+    <input type="checkbox" name="subdomains" checked /></div>
+    </div>
+    </div></div>
+
+        <div class="row-fluid">
+          <div class="span8 offset2">
+             <div id = 'results_top' ></div> 
+              <div id = 'results_top2' ></div>                     
+          </div>          
+        </div>
+        <div id = 'results' ></div>      
+    </div>      
+	
+	<div id="push"></div>
+    
+</div>
+  <!--  <script src="http://code.jquery.com/jquery.js"></script>-->
+
   <script>
 
   function progress(percent, $element) {
@@ -50,8 +182,8 @@
   function load_results() {
     //192.241.212.219
     var url = 'result?domain=' + document.getElementsByName('domain')[0].value ;    
-    //url += '&follow=' + ( document.getElementsByName('follow').value )[0].checked ? '0' : '1' );
-    url += '&follow=' + ( $('#follow').hasClass('active') ? '0' : '1' );
+    url += '&follow=' + ( document.getElementsByName('follow')[0].checked ? '1' : '0' );
+    //url += '&follow=' + ( $('#follow').hasClass('active') ? '0' : '1' );
     url += '&deny_url=' + ( document.getElementsByName('deny_url')[0].checked ? '1' : '0' );
     url += '&subdomains=' + ( document.getElementsByName('subdomains')[0].checked ? '1' : '0' );
     url += '&itemcount={{itemcount}}' 
@@ -75,7 +207,7 @@
     inter = setInterval(runp, 1000);    
     $("#results_top").html("<br><div id='progressBar' class='progress progress-striped active' ><div class='bar'></div></div>");     
     $('#results').load(url, function() {            
-      $("#results_top2").html("<center><span style='color:#595959'>The crawl is finished. Your results are listed below.</span></center>");
+      $("#results_top2").html("<div class='crawlAlert'><span style='color:#595959'>The crawl is finished. Your results are listed below.</span></div>");
       clearInterval(inter);           
       progress(100, $('#progressBar'));    
       $("#progressBar").removeClass("active");    
@@ -88,62 +220,11 @@
       if(e.keyCode==13)
       $('#button_id').click();
     });  	
-  	
   });
 </script> 
-
-<!-- Part 1: Wrap all page content here ;-->
-<div id="wrap">
-
-      <!-- Begin page content -->
-    <div class="container">
-        <div class="row-fluid">
-        <div class="page-header span8 offset2">
-          <h1>GA Checker</h1>
-          <p class="lead subhead">This is a test paragraph, seeing what a subhead will look like.</p>
-        </div>
-        </div>
-        <!-- <div class="span8 offset2">
-        	<p class="lead subhead">This is a test paragraph, seeing what a subhead will look like.</p>
-        </div> -->
-        <div class="row-fluid">
-
-	  	    <div class="span6 offset2"> 
-              <!--<span class="help-block">Do not add 'http://', only the domain name.</span>  -->
-			  <input type="text" class="input-block-level" placeholder="Enter Domain URL ... " id="doamin_id"  name="domain">			         
-			  
-			  <button type="button"  class="btn btn-primary" id="follow" data-toggle="button">Sitemap Mode</button> &nbsp;	&nbsp; &nbsp;  
-              
-              <!--
-              <label class="checkbox inline">              
-                <input type="checkbox" name="follow" > Sitemap Mode
-			  </label>
-			  -->
-              <label class="checkbox inline">              
-                <input type="checkbox" name="deny_url" > Skip URLs With Parameters
-			  </label>
-              <label class="checkbox inline">              
-                <input type="checkbox" name="subdomains" > Allow Subdomains
-              </label>
-			</div>
-        	<div class="span2"> 
-        		<button class="btn btn-large btn-block btn-success" id="button_id" onclick="load_results()" >Run Crawler</button> 
-        	</div>
-        </div>
-        <div class="row-fluid">
-          <div class="span8 offset2">
-             <div id = 'results_top' ></div> 
-              <div id = 'results_top2' ></div>                     
-          </div>          
-        </div>
-        <div id = 'results' ></div>      
-    </div>      
-	
-	<div id="push"></div>
-    
+<div class="navbar navbar-fixed-bottom">
+  <div class="span8 offset2">I'm on Twitter at <a href="https://twitter.com/jshklt">@jshklt</a>, also <a href="https://plus.google.com/111789805358776577936?rel=author">on G+</a>.</div>
 </div>
-  <!--  <script src="http://code.jquery.com/jquery.js"></script>-->
-
   </body>
 </html>
 
